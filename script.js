@@ -70,7 +70,9 @@ Question.prototype.randQuest = function() { // method for displaying question an
 }
 
 console.log(q1.randQuest()); // Zakaj to dela??
-*/
+
+SECOND
+
 (function () {
     var Question = function(question, answers, correctAnswer) { // function constructor
         this.question = question;
@@ -110,8 +112,55 @@ console.log(q1.randQuest()); // Zakaj to dela??
     }
 })();
 
+THIRD WITHOUT SCORE
 
+(function () {
+    var Question = function(question, answers, correctAnswer) { // function constructor
+        this.question = question;
+        this.answers = answers;
+        this.correctAnswer = correctAnswer;
+    };
+    // creating questions
+    var q1 = new Question("Are you over 18 years old?", ["Yes", "No"], 1);
+    var q2 = new Question("Are you from Ljubljana?", ["Yes", "No"], 2);
+    var q3 = new Question("What frameworks do you use?", ["Angular", "Vue", "React", "None"], 4);
+    var q4 = new Question("Do you hate CSGO?", ["Yes", "No", "Not sure"], 3);
+    // storing them in array
+    var quizArr = [q1, q2, q3, q4];
 
+    Question.prototype.displayQuestion = function() {
+        console.log(this.question);
+        for (var i = 0; i < this.answers.length; i++) {
+            console.log((i + 1) + ". " + this.answers[i]);
+        }
+    };
+
+    Question.prototype.checkAnswer = function(userAnswer) {
+        if (parseInt(userAnswer) === this.correctAnswer) {
+            console.clear();
+            console.log("Your answer is CORRECT!!");
+            console.log("----------------------------");
+            startQuiz();
+        } else if (userAnswer === "exit"){
+            console.clear();
+            console.log("You have exit the quiz");
+        } else {
+            console.clear();
+            console.log("Your answer is wrong :(");
+            console.log("----------------------------");
+            startQuiz();
+        }
+    };
+
+    startQuiz();
+    function startQuiz() {
+        var rand = Math.floor(Math.random() * quizArr.length);
+        quizArr[rand].displayQuestion();
+        var userAnswer = prompt("Please enter answer number:");
+        quizArr[rand].checkAnswer(userAnswer);
+    }
+})();
+*/
 
 
 
